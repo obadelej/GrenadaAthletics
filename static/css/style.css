@@ -366,24 +366,29 @@ footer {
     top: 0;
     left: 100%;
     margin-top: -1px;
-    margin-left: 0;
-    border-radius: 0 6px 6px 6px;
+    margin-left: 5px;
+    border-radius: 0 8px 8px 8px;
+    z-index: 1000;
+    display: none;
 }
 
 .dropdown-submenu:hover .dropdown-menu {
-    display: block;
+    display: block !important;
 }
 
 .dropdown-submenu .dropdown-toggle::after {
     display: inline-block;
-    margin-left: 0.255em;
+    margin-left: 0.5em;
     vertical-align: 0.255em;
-    content: "";
-    border-top: 0.3em solid;
-    border-right: 0.3em solid transparent;
-    border-bottom: 0;
-    border-left: 0.3em solid transparent;
-    transform: rotate(-90deg);
+    content: "▶";
+    border: none;
+    font-size: 0.8em;
+    color: var(--primary-green);
+}
+
+.dropdown-submenu:hover .dropdown-toggle::after {
+    content: "▼";
+    color: var(--secondary-red);
 }
 
 /* Navbar hover effects */
@@ -400,26 +405,48 @@ footer {
 
 /* Navbar dropdown improvements */
 .navbar-nav .dropdown-menu {
-    border: none;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 2px solid var(--primary-green);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     border-radius: 8px;
     margin-top: 0.5rem;
+    background-color: white;
+    min-width: 200px;
 }
 
 .dropdown-item {
     padding: 0.75rem 1.5rem;
     transition: all 0.3s ease;
+    color: var(--dark-gray);
+    font-weight: 500;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.dropdown-item:last-child {
+    border-bottom: none;
 }
 
 .dropdown-item:hover {
     background-color: var(--primary-green);
     color: white;
     transform: translateX(5px);
+    font-weight: 600;
+}
+
+.dropdown-submenu .dropdown-menu {
+    border: 2px solid var(--secondary-red);
+    background-color: #fff5f5;
+    min-width: 180px;
+}
+
+.dropdown-submenu .dropdown-item {
+    color: var(--dark-gray);
+    font-size: 0.9rem;
 }
 
 .dropdown-submenu .dropdown-item:hover {
     background-color: var(--secondary-red);
     color: white;
+    transform: translateX(3px);
 }
 
 /* Responsive Design */
