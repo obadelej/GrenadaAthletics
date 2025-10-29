@@ -26,6 +26,14 @@ body {
 .navbar-brand {
     font-weight: bold;
     font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-logo {
+    height: 40px;
+    width: auto;
+    border-radius: 5px;
 }
 
 .navbar-nav .nav-link {
@@ -58,14 +66,18 @@ body {
     opacity: 0.3;
 }
 
-.hero-icon {
-    font-size: 15rem;
-    color: rgba(255, 255, 255, 0.1);
-    position: absolute;
-    right: -5rem;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 1;
+.hero-logo {
+    max-width: 300px;
+    max-height: 300px;
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.hero-logo:hover {
+    transform: scale(1.05);
 }
 
 .hero-image {
@@ -457,8 +469,9 @@ footer {
         text-align: center;
     }
     
-    .hero-icon {
-        display: none;
+    .hero-logo {
+        max-width: 200px;
+        max-height: 200px;
     }
     
     .stat-card {

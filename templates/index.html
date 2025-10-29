@@ -15,6 +15,7 @@
                     Celebrating the spirit of athletic excellence and the rich sporting heritage of Grenada. 
                     Track our athletes, events, and competitions as we strive for greatness.
                 </p>
+                
                 <div class="d-flex gap-3">
                     <a href="{{ url_for('athletes.athletes') }}" class="btn btn-primary btn-lg">
                         <i class="fas fa-users me-2"></i>View Athletes
@@ -26,7 +27,7 @@
             </div>
             <div class="col-lg-6">
                 <div class="hero-image">
-                    <i class="fas fa-running hero-icon"></i>
+                    <img src="{{ url_for('static', filename='img/MyGAA_Logo.jpg') }}" class="img-fluid hero-logo" alt="Grenada Athletics Association Logo">
                 </div>
             </div>
         </div>
