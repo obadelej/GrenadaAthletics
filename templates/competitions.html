@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+
+{% block title %}Competitions - Grenada Athletics{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1 class="page-title">
+                    <i class="fas fa-trophy me-3"></i>Competitions
+                </h1>
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCompetitionModal">
+                    <i class="fas fa-plus me-2"></i>Add Competition
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Competitions List -->
+    <div class="row" id="competitionsList">
+        {% for competition in competitions %}
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="competition-card">
+                <div class="competition-header">
+                    <div class="competition-status">
+                        {% if competition.end_date and competition.end_date < today %}
+                            <span class="badge bg-secondary">Completed</span>
+                        {% elif competition.start_date <= today %}
+                            <span class="badge bg-success">Ongoing</span>
+                        {% else %}
+                            <span class="badge bg-warning">Upcoming</span>
+                        {% endif %}
+                    </div>
+                    <h5 class="competition-name">{{ competition.name }}</h5>
+                </div>
+                <div class="competition-details">
+                    <div class="detail-item">
+                        <i class="fas fa-map-marker-alt me-2"></i>
+                        <span>{{ competition.location }}</span>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-calendar me-2"></i>
+                        <span>{{ competition.start_date.strftime('%B %d, %Y') }}
+                        {% if competition.end_date %}
+                            - {{ competition.end_date.strftime('%B %d, %Y') }}
+                        {% endif %}</span>
+                    </div>
+                    {% if competition.description %}
+                    <div class="detail-item">
+                        <i class="fas fa-info-circle me-2"></i>
+                        <span>{{ competition.description[:100] }}{% if competition.description|length > 100 %}...{% endif %}</span>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="col-12">
+            <div class="empty-state">
+                <i class="fas fa-trophy empty-icon"></i>
+                <h3>No Competitions Yet</h3>
+                <p>Start by adding your first competition to the system.</p>
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCompetitionModal">
+                    <i class="fas fa-plus me-2"></i>Add First Competition
+                </button>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Add Competition Modal -->
+<div class="modal fade" id="addCompetitionModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add New Competition</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="addCompetitionForm">
+                    <div class="mb-3">
+                        <label for="competitionName" class="form-label">Competition Name</label>
+                        <input type="text" class="form-control" id="competitionName" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="competitionLocation" class="form-label">Location</label>
+                        <input type="text" class="form-control" id="competitionLocation" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="competitionStartDate" class="form-label">Start Date</label>
+                        <input type="date" class="form-control" id="competitionStartDate" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="competitionEndDate" class="form-label">End Date (Optional)</label>
+                        <input type="date" class="form-control" id="competitionEndDate">
+                    </div>
+                    <div class="mb-3">
+                        <label for="competitionDescription" class="form-label">Description</label>
+                        <textarea class="form-control" id="competitionDescription" rows="3" placeholder="Competition details..."></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" onclick="addCompetition()">Add Competition</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+
+

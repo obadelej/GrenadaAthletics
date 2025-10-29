@@ -1,0 +1,429 @@
+/* Grenada Athletics - Custom Styles */
+:root {
+    --primary-red: #198754; /* now primary green */
+    --secondary-black: #212529;
+    --accent-gold: #ffc107; /* yellow */
+    --light-gray: #f8f9fa;
+    --dark-gray: #6c757d;
+}
+
+/* Global Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--secondary-black);
+}
+
+.bg-primary {
+    background-color: var(--primary-red) !important;
+}
+
+.text-gold {
+    color: var(--accent-gold) !important;
+}
+
+/* Navigation */
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.navbar-nav .nav-link {
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+    color: var(--accent-gold) !important;
+}
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(135deg, var(--primary-red) 0%, #146c43 100%);
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="10" r="0.5" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+    opacity: 0.3;
+}
+
+.hero-icon {
+    font-size: 15rem;
+    color: rgba(255, 255, 255, 0.1);
+    position: absolute;
+    right: -5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+}
+
+.hero-image {
+    position: relative;
+    z-index: 2;
+}
+
+/* Stats Section */
+.stat-card {
+    padding: 2rem;
+    text-align: center;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.stat-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--primary-red);
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    color: var(--dark-gray);
+    font-weight: 500;
+    margin: 0;
+}
+
+/* Features Section */
+.section-title {
+    color: var(--secondary-black);
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.feature-card {
+    text-align: center;
+    padding: 2rem 1rem;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.feature-icon {
+    font-size: 3rem;
+    color: var(--primary-red);
+    margin-bottom: 1rem;
+}
+
+.feature-card h4 {
+    color: var(--secondary-black);
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.feature-card p {
+    color: var(--dark-gray);
+    margin: 0;
+}
+
+/* Page Titles */
+.page-title {
+    color: var(--secondary-black);
+    font-weight: bold;
+    margin: 0;
+}
+
+/* Cards */
+.athlete-card,
+.event-card,
+.competition-card {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+    overflow: hidden;
+}
+
+.athlete-card:hover,
+.event-card:hover,
+.competition-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Athlete Card */
+.athlete-header {
+    padding: 1.5rem;
+    background: linear-gradient(135deg, var(--primary-red), #146c43);
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.athlete-avatar {
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.athlete-info {
+    flex: 1;
+}
+
+.athlete-name {
+    margin: 0;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.athlete-sport {
+    margin: 0;
+    opacity: 0.9;
+    font-size: 0.9rem;
+}
+
+.athlete-details {
+    padding: 1.5rem;
+}
+
+.detail-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.75rem;
+    color: var(--dark-gray);
+}
+
+.detail-item:last-child {
+    margin-bottom: 0;
+}
+
+.detail-item i {
+    color: var(--primary-red);
+    width: 20px;
+}
+
+/* Event Card */
+.event-header {
+    padding: 1.5rem;
+    background: linear-gradient(135deg, var(--accent-gold), #e0a800);
+    color: var(--secondary-black);
+}
+
+.event-type-badge {
+    background: var(--secondary-black);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    display: inline-block;
+    margin-bottom: 0.75rem;
+}
+
+.event-name {
+    margin: 0;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.event-details {
+    padding: 1.5rem;
+}
+
+/* Competition Card */
+.competition-header {
+    padding: 1.5rem;
+    background: linear-gradient(135deg, var(--secondary-black), #495057);
+    color: white;
+    position: relative;
+}
+
+.competition-status {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
+
+.competition-name {
+    margin: 0;
+    font-weight: bold;
+    font-size: 1.2rem;
+    padding-right: 4rem;
+}
+
+.competition-details {
+    padding: 1.5rem;
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.empty-icon {
+    font-size: 4rem;
+    color: var(--dark-gray);
+    margin-bottom: 1.5rem;
+    opacity: 0.5;
+}
+
+.empty-state h3 {
+    color: var(--secondary-black);
+    margin-bottom: 1rem;
+}
+
+.empty-state p {
+    color: var(--dark-gray);
+    margin-bottom: 2rem;
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: var(--primary-red);
+    border-color: var(--primary-red);
+    font-weight: 500;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #157347;
+    border-color: #146c43;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(25, 135, 84, 0.3);
+}
+
+.btn-outline-light:hover {
+    background-color: var(--accent-gold);
+    border-color: var(--accent-gold);
+    color: var(--secondary-black);
+}
+
+/* Modals */
+.modal-content {
+    border-radius: 15px;
+    border: none;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+    background: linear-gradient(135deg, var(--primary-red), #146c43);
+    color: white;
+    border-radius: 15px 15px 0 0;
+    border-bottom: none;
+}
+
+.modal-title {
+    font-weight: bold;
+}
+
+.btn-close {
+    filter: invert(1);
+}
+
+/* Footer */
+footer {
+    margin-top: auto;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-section {
+        min-height: 60vh;
+        text-align: center;
+    }
+    
+    .hero-icon {
+        display: none;
+    }
+    
+    .stat-card {
+        margin-bottom: 2rem;
+    }
+    
+    .feature-card {
+        margin-bottom: 2rem;
+    }
+    
+    .athlete-header,
+    .event-header,
+    .competition-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.75rem;
+    }
+    
+    .athlete-avatar {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+    }
+}
+
+/* Utility Classes */
+.min-vh-75 {
+    min-height: 75vh;
+}
+
+.text-white {
+    color: white !important;
+}
+
+.bg-light {
+    background-color: var(--light-gray) !important;
+}
+
+/* Loading States */
+.loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+/* Success/Error Messages */
+.alert {
+    border-radius: 10px;
+    border: none;
+    font-weight: 500;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+

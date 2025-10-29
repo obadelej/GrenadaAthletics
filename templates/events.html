@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% block title %}Events - Grenada Athletics{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1 class="page-title">
+                    <i class="fas fa-calendar me-3"></i>Events
+                </h1>
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addEventModal">
+                    <i class="fas fa-plus me-2"></i>Add Event
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Events List -->
+    <div class="row" id="eventsList">
+        {% for event in events %}
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="event-card">
+                <div class="event-header">
+                    <div class="event-type-badge">{{ event.event_type }}</div>
+                    <h5 class="event-name">{{ event.name }}</h5>
+                </div>
+                <div class="event-details">
+                    {% if event.date %}
+                    <div class="detail-item">
+                        <i class="fas fa-calendar me-2"></i>
+                        <span>{{ event.date.strftime('%B %d, %Y') }}</span>
+                    </div>
+                    {% endif %}
+                    {% if event.description %}
+                    <div class="detail-item">
+                        <i class="fas fa-info-circle me-2"></i>
+                        <span>{{ event.description[:100] }}{% if event.description|length > 100 %}...{% endif %}</span>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="col-12">
+            <div class="empty-state">
+                <i class="fas fa-calendar empty-icon"></i>
+                <h3>No Events Yet</h3>
+                <p>Start by adding your first event to the system.</p>
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addEventModal">
+                    <i class="fas fa-plus me-2"></i>Add First Event
+                </button>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Add Event Modal -->
+<div class="modal fade" id="addEventModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add New Event</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="addEventForm">
+                    <div class="mb-3">
+                        <label for="eventName" class="form-label">Event Name</label>
+                        <input type="text" class="form-control" id="eventName" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="eventType" class="form-label">Event Type</label>
+                        <select class="form-select" id="eventType" required>
+                            <option value="">Select Event Type</option>
+                            <option value="Track">Track</option>
+                            <option value="Field">Field</option>
+                            <option value="Marathon">Marathon</option>
+                            <option value="Relay">Relay</option>
+                            <option value="Championship">Championship</option>
+                            <option value="Training">Training</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="eventDate" class="form-label">Date</label>
+                        <input type="date" class="form-control" id="eventDate">
+                    </div>
+                    <div class="mb-3">
+                        <label for="eventDescription" class="form-label">Description</label>
+                        <textarea class="form-control" id="eventDescription" rows="3" placeholder="Event details..."></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" onclick="addEvent()">Add Event</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+
+

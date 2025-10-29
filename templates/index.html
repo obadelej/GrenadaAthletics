@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Grenada Athletics{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="container">
+        <div class="row align-items-center min-vh-75">
+            <div class="col-lg-6">
+                <h1 class="display-4 fw-bold text-white mb-4">
+                    Welcome to <span class="text-gold">Grenada Athletics</span>
+                </h1>
+                <p class="lead text-white mb-4">
+                    Celebrating the spirit of athletic excellence and the rich sporting heritage of Grenada. 
+                    Track our athletes, events, and competitions as we strive for greatness.
+                </p>
+                <div class="d-flex gap-3">
+                    <a href="{{ url_for('athletes.athletes') }}" class="btn btn-primary btn-lg">
+                        <i class="fas fa-users me-2"></i>View Athletes
+                    </a>
+                    <a href="{{ url_for('events.events') }}" class="btn btn-outline-light btn-lg">
+                        <i class="fas fa-calendar me-2"></i>Upcoming Events
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="hero-image">
+                    <i class="fas fa-running hero-icon"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Stats Section -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-4 mb-4">
+                <div class="stat-card">
+                    <i class="fas fa-trophy text-gold stat-icon"></i>
+                    <h3 class="stat-number">{{ athletes_count or 0 }}</h3>
+                    <p class="stat-label">Registered Athletes</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="stat-card">
+                    <i class="fas fa-calendar-alt text-gold stat-icon"></i>
+                    <h3 class="stat-number">{{ events_count or 0 }}</h3>
+                    <p class="stat-label">Upcoming Events</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="stat-card">
+                    <i class="fas fa-medal text-gold stat-icon"></i>
+                    <h3 class="stat-number">{{ competitions_count or 0 }}</h3>
+                    <p class="stat-label">Competitions</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center mb-5">
+                <h2 class="section-title">Why Choose Grenada Athletics?</h2>
+                <p class="lead">We provide comprehensive tracking and management for athletes, events, and competitions across Grenada.</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="feature-card">
+                    <i class="fas fa-user-friends feature-icon"></i>
+                    <h4>Athlete Management</h4>
+                    <p>Track athlete profiles, personal bests, and achievements in one centralized platform.</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="feature-card">
+                    <i class="fas fa-calendar-check feature-icon"></i>
+                    <h4>Event Planning</h4>
+                    <p>Organize and manage athletic events with detailed scheduling and information.</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="feature-card">
+                    <i class="fas fa-chart-line feature-icon"></i>
+                    <h4>Performance Tracking</h4>
+                    <p>Monitor progress and analyze performance data to help athletes reach their goals.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+
+
+

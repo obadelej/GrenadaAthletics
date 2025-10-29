@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+
+{% block title %}Athletes - Grenada Athletics{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1 class="page-title">
+                    <i class="fas fa-users me-3"></i>Athletes
+                </h1>
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addAthleteModal">
+                    <i class="fas fa-plus me-2"></i>Add Athlete
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Athletes Grid -->
+    <div class="row" id="athletesGrid">
+        {% for athlete in athletes %}
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="athlete-card">
+                <div class="athlete-header">
+                    <div class="athlete-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="athlete-info">
+                        <h5 class="athlete-name">{{ athlete.name }}</h5>
+                        <p class="athlete-sport">{{ athlete.sport }}</p>
+                    </div>
+                </div>
+                <div class="athlete-details">
+                    <div class="detail-item">
+                        <i class="fas fa-birthday-cake me-2"></i>
+                        <span>Age: {{ athlete.age }}</span>
+                    </div>
+                    {% if athlete.personal_best %}
+                    <div class="detail-item">
+                        <i class="fas fa-trophy me-2"></i>
+                        <span>PB: {{ athlete.personal_best }}</span>
+                    </div>
+                    {% endif %}
+                    {% if athlete.achievements %}
+                    <div class="detail-item">
+                        <i class="fas fa-medal me-2"></i>
+                        <span>{{ athlete.achievements[:50] }}{% if athlete.achievements|length > 50 %}...{% endif %}</span>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="col-12">
+            <div class="empty-state">
+                <i class="fas fa-users empty-icon"></i>
+                <h3>No Athletes Yet</h3>
+                <p>Start by adding your first athlete to the system.</p>
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addAthleteModal">
+                    <i class="fas fa-plus me-2"></i>Add First Athlete
+                </button>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Add Athlete Modal -->
+<div class="modal fade" id="addAthleteModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add New Athlete</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="addAthleteForm">
+                    <div class="mb-3">
+                        <label for="athleteName" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="athleteName" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="athleteAge" class="form-label">Age</label>
+                        <input type="number" class="form-control" id="athleteAge" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="athleteSport" class="form-label">Sport</label>
+                        <select class="form-select" id="athleteSport" required>
+                            <option value="">Select Sport</option>
+                            <option value="Track">Track</option>
+                            <option value="Field">Field</option>
+                            <option value="Marathon">Marathon</option>
+                            <option value="Sprint">Sprint</option>
+                            <option value="Long Jump">Long Jump</option>
+                            <option value="High Jump">High Jump</option>
+                            <option value="Shot Put">Shot Put</option>
+                            <option value="Discus">Discus</option>
+                            <option value="Javelin">Javelin</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="athletePB" class="form-label">Personal Best</label>
+                        <input type="text" class="form-control" id="athletePB" placeholder="e.g., 9.58s (100m)">
+                    </div>
+                    <div class="mb-3">
+                        <label for="athleteAchievements" class="form-label">Achievements</label>
+                        <textarea class="form-control" id="athleteAchievements" rows="3" placeholder="List major achievements..."></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" onclick="addAthlete()">Add Athlete</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+
+
