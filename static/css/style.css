@@ -386,6 +386,18 @@ footer {
     transform: rotate(-90deg);
 }
 
+/* Navbar hover effects */
+.navbar-nav .nav-link {
+    transition: all 0.3s ease;
+    color: white !important;
+}
+
+.navbar-nav .nav-link:hover {
+    color: var(--primary-green) !important;
+    background-color: var(--accent-yellow);
+    border-radius: 5px;
+}
+
 /* Navbar dropdown improvements */
 .navbar-nav .dropdown-menu {
     border: none;
