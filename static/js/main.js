@@ -16,7 +16,42 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Set up form handlers
     setupFormHandlers();
+    
+    // Initialize dropdown functionality
+    initializeDropdowns();
 });
+
+// Initialize dropdown functionality
+function initializeDropdowns() {
+    // Handle submenu dropdowns
+    const submenuToggles = document.querySelectorAll('.dropdown-submenu .dropdown-toggle');
+    submenuToggles.forEach(toggle => {
+        toggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const submenu = this.nextElementSibling;
+            const isOpen = submenu.style.display === 'block';
+            
+            // Close all other submenus
+            document.querySelectorAll('.dropdown-submenu .dropdown-menu').forEach(menu => {
+                menu.style.display = 'none';
+            });
+            
+            // Toggle current submenu
+            submenu.style.display = isOpen ? 'none' : 'block';
+        });
+    });
+    
+    // Close submenus when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.dropdown-submenu')) {
+            document.querySelectorAll('.dropdown-submenu .dropdown-menu').forEach(menu => {
+                menu.style.display = 'none';
+            });
+        }
+    });
+}
 
 // API Functions
 async function apiCall(url, options = {}) {
