@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block title %}Contact Us - Grenada Athletics{% endblock %}
+
+{% block content %}
+<!-- Contact Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="text-center mb-5">
+                    <h1 class="display-4 fw-bold mb-3">Contact Us</h1>
+                    <p class="lead">We'd love to hear from you. Get in touch with the Grenada Athletics Association.</p>
+                </div>
+
+                <div class="row mb-5">
+                    <div class="col-md-4 mb-4">
+                        <div class="text-center">
+                            <i class="fas fa-map-marker-alt fa-2x text-gold mb-3"></i>
+                            <h5>Address</h5>
+                            <p class="text-muted">National Stadium<br>Queen's Park<br>St. George's, Grenada</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="text-center">
+                            <i class="fas fa-phone fa-2x text-gold mb-3"></i>
+                            <h5>Phone</h5>
+                            <p class="text-muted">
+                                <a href="tel:+14732325263" class="text-decoration-none">1 (473) 232-5263</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="text-center">
+                            <i class="fas fa-envelope fa-2x text-gold mb-3"></i>
+                            <h5>Email</h5>
+                            <p class="text-muted">
+                                <a href="mailto:grn@mf.worldathletics.org" class="text-decoration-none">grn@mf.worldathletics.org</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card shadow-lg">
+                    <div class="card-body p-5">
+                        <h3 class="mb-4">Send us a Message</h3>
+                        <form id="contactForm" method="POST" action="{{ url_for('main.contact') }}">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="name" class="form-label">Name <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="name" name="name" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+                                    <input type="email" class="form-control" id="email" name="email" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="subject" class="form-label">Subject <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="subject" name="subject" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="message" class="form-label">Message <span class="text-danger">*</span></label>
+                                <textarea class="form-control" id="message" name="message" rows="6" required></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <button type="submit" class="btn btn-primary btn-lg">
+                                    <i class="fas fa-paper-plane me-2"></i>Send Message
+                                </button>
+                                <button type="reset" class="btn btn-outline-secondary btn-lg ms-2">
+                                    <i class="fas fa-redo me-2"></i>Clear
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="mt-5 text-center">
+                    <h4 class="mb-3">Follow Us</h4>
+                    <div class="social-links">
+                        <a href="#" class="btn btn-outline-primary me-2 mb-2">
+                            <i class="fab fa-facebook-f me-2"></i>Facebook
+                        </a>
+                        <a href="#" class="btn btn-outline-info me-2 mb-2">
+                            <i class="fab fa-twitter me-2"></i>Twitter
+                        </a>
+                        <a href="#" class="btn btn-outline-danger me-2 mb-2">
+                            <i class="fab fa-instagram me-2"></i>Instagram
+                        </a>
+                        <a href="#" class="btn btn-outline-primary mb-2">
+                            <i class="fab fa-linkedin me-2"></i>LinkedIn
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
