@@ -1,4 +1,5 @@
-from flask import Blueprint, render_template, request, flash, redirect, url_for
+from flask import Blueprint, render_template, request, flash, redirect, url_for, send_file, Response
+import os
 from app.models import Athlete, Event, Competition
 
 main_bp = Blueprint('main', __name__)
@@ -24,6 +25,32 @@ def about():
 def history():
     """History page"""
     return render_template('history.html')
+
+@main_bp.route('/constitution')
+def constitution():
+    """Constitution & Bye-Laws page"""
+    return render_template('constitution.html')
+
+@main_bp.route('/constitution/download')
+def download_constitution():
+    """Serve the constitution PDF as an attachment to trigger Save dialog."""
+    project_root = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
+    pdf_path = os.path.join(project_root, 'static', 'docs', 'Constitution.pdf')
+    
+    response = send_file(
+        pdf_path,
+        mimetype='application/pdf',
+        as_attachment=True,
+        download_name='GAA_Constitution.pdf'
+    )
+    
+    # Explicitly set headers to force download
+    response.headers['Content-Disposition'] = 'attachment; filename="GAA_Constitution.pdf"'
+    response.headers['Content-Type'] = 'application/pdf'
+    response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+    response.headers['Pragma'] = 'no-cache'
+    response.headers['Expires'] = '0'
+    return response
 
 @main_bp.route('/contact', methods=['GET', 'POST'])
 def contact():

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}Constitution & Bye-Laws | Grenada Athletics{% endblock %}
+{% block content %}
+<div class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="mb-0">Constitution & Bye-Laws</h2>
+        <a class="btn btn-success" href="{{ url_for('main.download_constitution') }}" id="downloadConstitutionBtn" onclick="event.preventDefault(); forceDownload(this.href);">
+            <i class="fa fa-download me-1"></i> Download a copy of the GAA Constitution
+        </a>
+        <script>
+            async function forceDownload(url) {
+                try {
+                    const response = await fetch(url);
+                    const blob = await response.blob();
+                    const downloadUrl = window.URL.createObjectURL(blob);
+                    const link = document.createElement('a');
+                    link.href = downloadUrl;
+                    link.download = 'GAA_Constitution.pdf';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    window.URL.revokeObjectURL(downloadUrl);
+                } catch (error) {
+                    console.error('Download failed:', error);
+                    // Fallback to direct link
+                    window.location.href = url;
+                }
+            }
+        </script>
+    </div>
+
+    <div class="pdf-container" style="border: 1px solid #ddd; border-radius: 4px; overflow: hidden; background: #f5f5f5;">
+        <iframe src="{{ url_for('static', filename='docs/Constitution.pdf') }}#toolbar=1&navpanes=1&scrollbar=1" 
+                width="100%" 
+                height="800px" 
+                style="border: none; display: block;"
+                title="GAA Constitution PDF">
+            <p>Your browser does not support PDFs. <a href="{{ url_for('static', filename='docs/constitution.pdf') }}">Download the PDF</a> instead.</p>
+        </iframe>
+    </div>
+</div>
+{% endblock %}
