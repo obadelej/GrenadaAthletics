@@ -9,10 +9,16 @@ let competitions = [];
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Grenada Athletics app initialized');
     
-    // Load initial data
-    loadAthletes();
-    loadEvents();
-    loadCompetitions();
+    // Load initial data only when relevant containers exist
+    if (document.getElementById('athletesGrid')) {
+        loadAthletes();
+    }
+    if (document.getElementById('eventsList')) {
+        loadEvents();
+    }
+    if (document.getElementById('competitionsList')) {
+        loadCompetitions();
+    }
     
     // Set up form handlers
     setupFormHandlers();

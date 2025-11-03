@@ -20,6 +20,11 @@ def about():
     """About us page"""
     return render_template('about.html')
 
+@main_bp.route('/history')
+def history():
+    """History page"""
+    return render_template('history.html')
+
 @main_bp.route('/contact', methods=['GET', 'POST'])
 def contact():
     """Contact us page"""

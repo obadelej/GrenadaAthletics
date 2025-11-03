@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block title %}Events | Grenada Athletics{% endblock %}
+{% block content %}
+<div class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="mb-0">Track & Field Events</h2>
+        <a class="btn btn-success" href="{{ url_for('events.create') }}">
+            <i class="fa fa-plus me-1"></i> Add Event
+        </a>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Code</th>
+                    <th scope="col">Description</th>
+                    <th scope="col" class="text-end">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for e in items %}
+                <tr>
+                    <td>{{ e.event_id }}</td>
+                    <td>{{ e.event_name }}</td>
+                    <td>{{ e.event_code }}</td>
+                    <td>{{ e.event_description }}</td>
+                    <td class="text-end">
+                        <div class="d-inline-flex gap-2">
+                            <a class="btn btn-success" href="{{ url_for('events.edit', event_id=e.event_id) }}">Edit</a>
+                            <form method="post" action="{{ url_for('events.delete', event_id=e.event_id) }}" class="m-0 p-0 d-inline-block" onsubmit="return confirm('Delete this event?');">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5" class="text-center py-4">No events yet. Click "Add Event" to create the first entry.</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
+
+

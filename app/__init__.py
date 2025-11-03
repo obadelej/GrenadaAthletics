@@ -16,8 +16,10 @@ def create_app(config_class=Config):
     from app.blueprints.events import events_bp
     from app.blueprints.competitions import competitions_bp
     from app.blueprints.main import main_bp
+    from app.blueprints.news import news_bp
     
     app.register_blueprint(main_bp)
+    app.register_blueprint(news_bp, url_prefix='/news')
     app.register_blueprint(athletes_bp, url_prefix='/athletes')
     app.register_blueprint(events_bp, url_prefix='/events')
     app.register_blueprint(competitions_bp, url_prefix='/competitions')

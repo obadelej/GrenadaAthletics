@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% if item %}{% set page_title = 'Edit News' %}{% else %}{% set page_title = 'Create News' %}{% endif %}
+{% block title %}{{ page_title }} | Grenada Athletics{% endblock %}
+{% block content %}
+<div class="container py-4">
+    <h2 class="mb-4">{{ page_title }}</h2>
+    <form method="post" enctype="multipart/form-data" class="row g-3">
+        <div class="col-md-6">
+            <label class="form-label">Title</label>
+            <input name="title" type="text" value="{{ item.title if item else '' }}" class="form-control" required>
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Author</label>
+            <input name="author" type="text" value="{{ item.author if item else '' }}" class="form-control" required>
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Date Created</label>
+            <input name="date_created" type="date" value="{{ item.date_created.strftime('%Y-%m-%d') if item and item.date_created else '' }}" class="form-control">
+        </div>
+        <div class="col-12">
+            <label class="form-label">Content</label>
+            <textarea name="content" rows="8" class="form-control" required>{{ item.content if item else '' }}</textarea>
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Photo</label>
+            <input name="photo" type="file" accept="image/*" class="form-control">
+            {% if item and item.photo_path %}
+            <div class="mt-2">
+                <img src="{{ url_for('static', filename=item.photo_path) }}" alt="Current photo" style="max-height:120px" class="img-thumbnail">
+            </div>
+            {% endif %}
+        </div>
+        <div class="col-12 d-flex gap-2">
+            <button class="btn btn-success" type="submit">Save</button>
+            <a href="{{ url_for('news.index') }}" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+

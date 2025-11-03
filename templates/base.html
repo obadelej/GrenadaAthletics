@@ -13,7 +13,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand" href="{{ url_for('main.index') }}">
-                <img src="{{ url_for('static', filename='img/MyGAA_Logo.jpg') }}" alt="GAA Logo" class="navbar-logo me-2">
+                <img src="{{ url_for('static', filename='img/GAA_Logo.jpg') }}" alt="GAA Logo" class="navbar-logo me-2">
                 Grenada Athletics Association
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -29,7 +29,7 @@
                             Federation
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="federationDropdown">
-                            <li><a class="dropdown-item" href="#">History</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('main.history') }}">History</a></li>
                             <li class="dropdown-submenu">
                                 <a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown">Members</a>
                                 <ul class="dropdown-menu">
@@ -55,7 +55,7 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">News</a>
+                        <a class="nav-link" href="{{ url_for('news.index') }}">News</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="statsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% if item %}{% set page_title = 'Edit Event' %}{% else %}{% set page_title = 'Create Event' %}{% endif %}
+{% block title %}{{ page_title }} | Grenada Athletics{% endblock %}
+{% block content %}
+<div class="container py-4">
+    <h2 class="mb-4">{{ page_title }}</h2>
+    <form method="post" class="row g-3">
+        <div class="col-md-6">
+            <label class="form-label">Event Name</label>
+            <input name="event_name" type="text" value="{{ item.event_name if item else '' }}" class="form-control" required>
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Event Code</label>
+            <input name="event_code" type="text" value="{{ item.event_code if item else '' }}" class="form-control" required>
+        </div>
+        <div class="col-12">
+            <label class="form-label">Description</label>
+            <textarea name="event_description" rows="6" class="form-control">{{ item.event_description if item else '' }}</textarea>
+        </div>
+        <div class="col-12 d-flex gap-2">
+            <button class="btn btn-success" type="submit">Save</button>
+            <a href="{{ url_for('events.events') }}" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+
