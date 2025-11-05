@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %}{{ item.full_name }} | Board of Directors | Grenada Athletics{% endblock %}
+{% block content %}
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-10 col-xl-9">
+            <a href="{{ url_for('directors.index') }}" class="btn btn-link p-0 mb-3">← Back to Board of Directors</a>
+            
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    {% if item.img_path %}
+                    <img src="{{ url_for('static', filename=item.img_path) }}" alt="{{ item.full_name }}" class="img-fluid rounded shadow">
+                    {% else %}
+                    <div class="bg-light d-flex align-items-center justify-content-center rounded shadow" style="height: 300px;">
+                        <i class="fas fa-user fa-5x text-muted"></i>
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="col-md-8">
+                    <h1 class="h2">{{ item.full_name }}</h1>
+                    <p class="text-muted fs-5 mb-4">{{ item.role }}</p>
+                    
+                    {% if item.bio %}
+                    <div class="mb-4">
+                        <h3 class="h5">Biography</h3>
+                        <article class="fs-5" style="white-space: pre-wrap;">{{ item.bio }}</article>
+                    </div>
+                    {% else %}
+                    <div class="alert alert-info">No biography available.</div>
+                    {% endif %}
+
+                    <div class="mt-4 d-flex gap-2">
+                        <a class="btn btn-success" href="{{ url_for('directors.edit', item_id=item.id) }}">Edit</a>
+                        <form method="post" action="{{ url_for('directors.delete', item_id=item.id) }}" class="m-0 p-0 d-inline-block" onsubmit="return confirm('Delete this director?');">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

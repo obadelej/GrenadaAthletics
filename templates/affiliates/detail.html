@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block title %}{{ item.team_name }} | Affiliates | Grenada Athletics{% endblock %}
+{% block content %}
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-10 col-xl-9">
+            <a href="{{ url_for('affiliates.index') }}" class="btn btn-link p-0 mb-3">← Back to Affiliates</a>
+            
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    {% if item.img_path %}
+                    <img src="{{ url_for('static', filename=item.img_path) }}" alt="{{ item.team_name }}" class="img-fluid rounded shadow" style="max-height: 300px; object-fit: contain; background-color: #f8f9fa;">
+                    {% else %}
+                    <div class="bg-light d-flex align-items-center justify-content-center rounded shadow" style="height: 300px;">
+                        <i class="fas fa-users fa-5x text-muted"></i>
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="col-md-8">
+                    <h1 class="h2">{{ item.team_name }}</h1>
+                    <dl class="row mt-4">
+                        <dt class="col-sm-3">Team Code:</dt>
+                        <dd class="col-sm-9">{{ item.team_code }}</dd>
+                        
+                        {% if item.team_colors %}
+                        <dt class="col-sm-3">Team Colors:</dt>
+                        <dd class="col-sm-9">{{ item.team_colors }}</dd>
+                        {% endif %}
+                        
+                        {% if item.contact %}
+                        <dt class="col-sm-3">Contact:</dt>
+                        <dd class="col-sm-9">{{ item.contact }}</dd>
+                        {% endif %}
+                        
+                        {% if item.email %}
+                        <dt class="col-sm-3">Email:</dt>
+                        <dd class="col-sm-9"><a href="mailto:{{ item.email }}">{{ item.email }}</a></dd>
+                        {% endif %}
+                    </dl>
+
+                    <div class="mt-4 d-flex gap-2">
+                        <a class="btn btn-success" href="{{ url_for('affiliates.edit', item_id=item.id) }}">Edit</a>
+                        <form method="post" action="{{ url_for('affiliates.delete', item_id=item.id) }}" class="m-0 p-0 d-inline-block" onsubmit="return confirm('Delete this affiliate?');">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

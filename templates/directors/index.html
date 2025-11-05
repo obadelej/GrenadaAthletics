@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block title %}Board of Directors | Grenada Athletics{% endblock %}
+{% block content %}
+<div class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="mb-0">Board of Directors</h2>
+        <a class="btn btn-success" href="{{ url_for('directors.create') }}">
+            <i class="fa fa-plus me-1"></i> Add Director
+        </a>
+    </div>
+
+    {% if items %}
+    <div class="row g-4">
+        {% for director in items %}
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100">
+                {% if director.img_path %}
+                <img src="{{ url_for('static', filename=director.img_path) }}" class="card-img-top" alt="{{ director.full_name }}" style="height: 250px; object-fit: cover;">
+                {% else %}
+                <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 250px;">
+                    <i class="fas fa-user fa-5x text-muted"></i>
+                </div>
+                {% endif %}
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">{{ director.full_name }}</h5>
+                    <p class="text-muted mb-2">{{ director.role }}</p>
+                    {% if director.bio %}
+                    <p class="card-text" style="flex:1">{{ director.bio[:150] }}{% if director.bio|length > 150 %}...{% endif %}</p>
+                    {% else %}
+                    <p class="card-text text-muted" style="flex:1">No bio available.</p>
+                    {% endif %}
+                    <div class="mt-auto d-flex gap-2 align-items-center">
+                        <a class="btn btn-outline-primary btn-sm" href="{{ url_for('directors.detail', item_id=director.id) }}">View Details</a>
+                        <a class="btn btn-success" href="{{ url_for('directors.edit', item_id=director.id) }}">Edit</a>
+                        <form method="post" action="{{ url_for('directors.delete', item_id=director.id) }}" class="m-0 p-0 d-inline-block" onsubmit="return confirm('Delete this director?');">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="alert alert-info">No directors yet. Click "Add Director" to create the first director.</div>
+    {% endif %}
+</div>
+{% endblock %}
+
