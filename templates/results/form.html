@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% if item %}{% set page_title = 'Edit Result' %}{% else %}{% set page_title = 'Create Result' %}{% endif %}
+{% block title %}{{ page_title }} | Grenada Athletics{% endblock %}
+{% block content %}
+<div class="container py-4">
+    <h2 class="mb-4">{{ page_title }}</h2>
+    <form method="post" class="row g-3">
+        <div class="col-12">
+            <label class="form-label">Meet Name <span class="text-danger">*</span></label>
+            <input name="meet_name" 
+                   type="text" 
+                   value="{{ item.meet_name if item else '' }}" 
+                   class="form-control" 
+                   required
+                   placeholder="e.g., 2025 National Championships">
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Meet Date <span class="text-danger">*</span></label>
+            <input name="meet_date" 
+                   type="date" 
+                   value="{{ item.meet_date.strftime('%Y-%m-%d') if item and item.meet_date else '' }}" 
+                   class="form-control" 
+                   required>
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">PDF Filename <span class="text-danger">*</span></label>
+            <input name="pdf_filename" 
+                   type="text" 
+                   value="{{ item.pdf_filename if item else '' }}" 
+                   class="form-control" 
+                   required
+                   placeholder="e.g., 2025_national_championships.pdf">
+            <small class="form-text text-muted">Enter the filename of the PDF file in the static/results folder.</small>
+        </div>
+        <div class="col-12">
+            <label class="form-label">Description</label>
+            <textarea name="description" 
+                      rows="4" 
+                      class="form-control"
+                      placeholder="Optional description of the meet...">{{ item.description if item else '' }}</textarea>
+        </div>
+        <div class="col-12 d-flex gap-2">
+            <button class="btn btn-success" type="submit">Save</button>
+            <a href="{{ url_for('results.index') }}" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock %}
+

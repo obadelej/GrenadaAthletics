@@ -61,11 +61,11 @@
                         <a class="nav-link dropdown-toggle" href="#" id="statsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Stats
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="statsDropdown">
-                            <li><a class="dropdown-item" href="#">Records</a></li>
-                            <li><a class="dropdown-item" href="#">Results</a></li>
-                            <li><a class="dropdown-item" href="#">Rankings</a></li>
-                        </ul>
+                            <ul class="dropdown-menu" aria-labelledby="statsDropdown">
+                                <li><a class="dropdown-item" href="#">Records</a></li>
+                                <li><a class="dropdown-item" href="{{ url_for('results.index') }}">Results</a></li>
+                                <li><a class="dropdown-item" href="#">Rankings</a></li>
+                            </ul>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('events.events') }}">Events</a>
