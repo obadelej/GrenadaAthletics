@@ -37,3 +37,7 @@ Thumbs.db
 instance/
 *.sqlite3
 *.db
+
+# Temporary files
+~$*
+temp_wheels/

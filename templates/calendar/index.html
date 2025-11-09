@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% block title %}Calendar | Grenada Athletics{% endblock %}
+{% block content %}
+<div class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="mb-0">Calendar</h2>
+        <div class="d-flex gap-2">
+            <form method="post" action="{{ url_for('calendar.import_excel') }}" class="m-0">
+                <button type="submit" class="btn btn-info">
+                    <i class="fa fa-file-excel me-1"></i> Import from Excel
+                </button>
+            </form>
+            <a class="btn btn-success" href="{{ url_for('calendar.create') }}">
+                <i class="fa fa-plus me-1"></i> Add Entry
+            </a>
+        </div>
+    </div>
+
+    <!-- Filter Section -->
+    <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0"><i class="fa fa-filter me-2"></i>Filter Calendar</h5>
+        </div>
+        <div class="card-body">
+            <form method="get" action="{{ url_for('calendar.index') }}" class="row g-3">
+                <div class="col-md-5">
+                    <label for="start_date" class="form-label">Start Date (From)</label>
+                    <input type="date" 
+                           id="start_date" 
+                           name="start_date" 
+                           value="{{ start_date_filter }}" 
+                           class="form-control">
+                </div>
+                <div class="col-md-5">
+                    <label for="end_date" class="form-label">End Date (To)</label>
+                    <input type="date" 
+                           id="end_date" 
+                           name="end_date" 
+                           value="{{ end_date_filter }}" 
+                           class="form-control">
+                </div>
+                <div class="col-md-2 d-flex align-items-end">
+                    <div class="d-flex gap-2 w-100">
+                        <button type="submit" class="btn btn-primary flex-fill">
+                            <i class="fa fa-search me-1"></i> Filter
+                        </button>
+                        <a href="{{ url_for('calendar.index') }}" class="btn btn-secondary">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Calendar Table -->
+    <div class="table-responsive">
+        <table class="table table-striped align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">Start Date</th>
+                    <th scope="col">End Date</th>
+                    <th scope="col">Activity</th>
+                    <th scope="col">Venue</th>
+                    <th scope="col" class="text-end">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for item in items %}
+                <tr>
+                    <td>{{ item.start_date.strftime('%Y-%m-%d') if item.start_date else '' }}</td>
+                    <td>{{ item.end_date.strftime('%Y-%m-%d') if item.end_date else '' }}</td>
+                    <td>{{ item.activity }}</td>
+                    <td>{{ item.venue or '-' }}</td>
+                    <td class="text-end">
+                        <div class="d-inline-flex gap-2">
+                            <a class="btn btn-success" href="{{ url_for('calendar.edit', item_id=item.id) }}">Edit</a>
+                            <form method="post" action="{{ url_for('calendar.delete', item_id=item.id) }}" class="m-0 p-0 d-inline-block" onsubmit="return confirm('Delete this calendar entry?');">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5" class="text-center py-4">No calendar entries found. Click "Add Entry" to create the first entry or "Import from Excel" to import from calendar.xlsx.</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
+

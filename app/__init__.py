@@ -19,6 +19,7 @@ def create_app(config_class=Config):
     from app.blueprints.news import news_bp
     from app.blueprints.directors import directors_bp
     from app.blueprints.affiliates import affiliates_bp
+    from app.blueprints.calendar import calendar_bp
     
     app.register_blueprint(main_bp)
     app.register_blueprint(news_bp, url_prefix='/news')
@@ -27,5 +28,6 @@ def create_app(config_class=Config):
     app.register_blueprint(competitions_bp, url_prefix='/competitions')
     app.register_blueprint(directors_bp, url_prefix='/directors')
     app.register_blueprint(affiliates_bp, url_prefix='/affiliates')
+    app.register_blueprint(calendar_bp, url_prefix='/calendar')
     
     return app
